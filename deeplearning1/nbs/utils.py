@@ -1,6 +1,7 @@
 from __future__ import division,print_function
 import math, os, json, sys, re
-import cPickle as pickle
+#import cPickle as pickle
+import pickle
 from glob import glob
 import numpy as np
 from matplotlib import pyplot as plt
@@ -19,7 +20,7 @@ from scipy import misc, ndimage
 from scipy.ndimage.interpolation import zoom
 from scipy.ndimage import imread
 from sklearn.metrics import confusion_matrix
-import bcolz
+#import bcolz
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.manifold import TSNE
 
@@ -39,10 +40,11 @@ from keras.models import Sequential, Model
 from keras.layers import Input, Embedding, Reshape, merge, LSTM, Bidirectional
 from keras.layers import TimeDistributed, Activation, SimpleRNN, GRU
 from keras.layers.core import Flatten, Dense, Dropout, Lambda
-from keras.regularizers import l2, activity_l2, l1, activity_l1
+from keras.regularizers import l2,l1#,activity_l2, l1, activity_l1
 from keras.layers.normalization import BatchNormalization
 from keras.optimizers import SGD, RMSprop, Adam
-from keras.utils.layer_utils import layer_from_config
+from keras.layers import deserialize as layer_from_config
+#from keras.utils.layer_utils import layer_from_config
 from keras.metrics import categorical_crossentropy, categorical_accuracy
 from keras.layers.convolutional import *
 from keras.preprocessing import image, sequence
@@ -173,13 +175,13 @@ def plot_confusion_matrix(cm, classes, normalize=False, title='Confusion matrix'
     plt.xlabel('Predicted label')
 
 
-def save_array(fname, arr):
+'''def save_array(fname, arr):
     c=bcolz.carray(arr, rootdir=fname, mode='w')
     c.flush()
 
 
 def load_array(fname):
-    return bcolz.open(fname)[:]
+    return bcolz.open(fname)[:]'''
 
 
 def mk_size(img, r2c):
